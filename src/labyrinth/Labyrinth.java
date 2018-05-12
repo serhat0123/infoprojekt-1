@@ -16,29 +16,17 @@ public class Labyrinth {
      */
     public static void main(String[] args) {
         
-        /*int [][] flaeche =              //Das labyrinth ansich aus 1 und 0
-        { {1,1,0,0,0,0,0,0,0,0,0,0,0},
-          {0,1,1,0,1,0,1,0,0,0,0,0,0},
-          {0,0,1,1,1,1,1,0,1,1,1,0,0},
-          {0,0,0,0,1,0,1,0,0,1,0,0,0},
-          {0,0,1,0,0,0,1,1,1,1,1,0,0},
-          {0,0,1,0,1,1,1,0,1,0,0,0,0},
-          {0,0,1,0,1,0,0,0,1,1,1,0,0},
-          {0,0,1,0,1,1,1,0,1,0,1,0,0},
-          {0,0,0,0,0,0,0,0,0,0,1,1,5},  //Ende soll 5 sein bei P(12/8)
-          {0,0,0,0,0,0,0,0,0,0,0,0,0}
-        };
-        **/
+        
         int [][] flaeche =              //Das labyrinth ansich aus 1 und 0
         { {0,0,0,0,0,0,0,0,0,0,0,0,0},
-          {0,1,0,0,1,1,1,1,1,1,1,0,0},
-          {0,1,1,1,1,0,0,1,0,0,1,0,0},
-          {0,0,0,0,0,0,0,1,0,0,0,0,0},
-          {0,0,0,0,1,1,1,1,0,1,1,1,3}, //ende ist 3 und p(1/1) ist anfang
-          {0,0,0,0,1,0,0,0,0,1,0,0,0},
-          {0,0,0,0,1,0,0,0,0,1,0,0,0},
-          {0,0,0,0,1,1,1,1,1,1,0,0,0},
-          {0,0,0,0,0,0,0,0,0,0,0,0,0},
+          {0,1,0,1,1,1,1,1,1,1,1,1,0},
+          {0,1,1,1,0,0,0,1,0,1,0,1,0},
+          {0,0,0,0,0,0,0,1,0,1,1,1,0},
+          {0,1,1,1,1,1,1,1,0,0,0,0,0}, //ende ist 3 und p(1/1) ist anfang
+          {0,1,0,0,1,0,0,0,0,1,1,1,3},
+          {0,1,1,0,1,0,0,0,0,1,0,0,0},
+          {0,1,0,0,1,1,1,1,1,1,0,0,0},
+          {0,1,1,0,0,0,0,0,0,0,0,0,0},
           {0,0,0,0,0,0,0,0,0,0,0,0,0}
         };
         int [][] eigflaeche =              //Das labyrinth das es sich selbst erarbeiten wird
@@ -89,10 +77,11 @@ public class Labyrinth {
                 weg[k]="unten";
             } 
             
-                    else {
+                    else {          //else tritt in kraft wenn nicht nach oben, l. r. oder unten gegangen werden kann (ist aber auch nicht das Ziel 
+                                    //    --> Sackgasse (auch ne schleife zählt dazu)
                 
-                        if ("rechts".equals(weg[k])){
-                           eigflaeche[a][b]=2;
+                        if ("rechts".equals(weg[k])){   //wenn man davor rechts gegangen ist wird der wegabschnitt auf 2 gesetzt (2=fail weg), man geht dann mit b-- nach links
+                           eigflaeche[a][b]=2;          // und der gegangene wegeintrag wird gelöscht (mit 0) und k wird um eins verringert (also einen schritt zurück)
                             b--;
                             weg[k]="0";
                             k--;
