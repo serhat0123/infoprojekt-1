@@ -107,19 +107,35 @@ public class oberflaeche extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        int c = 0;
+        int h = jPanel1.getHeight();
+        int w = jPanel1.getWidth();
+        
+        int c = 0;      //soll aus weg2 array den weg bekommen und dann zeichnen
+        String k;
+        int i = 0;
         while (c==0){
-            
+            k = Statisch.weg2[i];
+            if ("rechts".equals(Statisch.weg2[i])){ //weiterarbeiten: wie macht man das beim klick etwas gemalt wird und das gemalte bleibt? weil methode in method geht nicht
+                
+            } else if ("links".equals(Statisch.weg2[i])){
+                
+            } else if ("oben".equals(Statisch.weg2[i])){
+                
+            } else if ("unten".equals(Statisch.weg2[i])){
+                
+            } else {
+                c=1;
+            }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    public void zeichneBild(Graphics g){
+    public void zeichneBild(Graphics g){       
         int h = jPanel1.getHeight();
         int w = jPanel1.getWidth();
         h=h/10;
         w=w/13;
      
-        for (int u = 0; u < 10; u++) {
+        for (int u = 0; u < 10; u++) {   // zeichnet labyrint-layout
         
             for (int i = 0; i < 13; i++) {
                 g.setColor(Color.BLACK);
