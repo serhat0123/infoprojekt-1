@@ -11,20 +11,10 @@ package labyrinth;
  */
 public class Labyrinth {
 
-    public int[][] getWeg(){    //dran arbeiten
-            return null;
-        }
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
-        
-        
-        oberflaeche o= new oberflaeche();
-        o.setVisible(true);
-        o.setTitle("Labyrinth");
-        
         
         
         int [][] flaeche =              //Das labyrinth ansich aus 1 und 0
@@ -34,9 +24,9 @@ public class Labyrinth {
           {0,0,0,0,0,0,0,1,0,1,1,1,0},
           {0,1,1,1,1,1,1,1,0,0,0,0,0}, //ende ist 3 und p(1/1) ist anfang
           {0,1,0,0,1,0,0,0,0,1,1,1,3},
-          {0,1,0,0,0,0,0,0,0,1,0,0,0},
-          {0,1,1,0,1,1,1,1,1,1,0,0,0},
-          {0,0,1,1,0,0,0,0,0,0,0,0,0},
+          {0,1,1,0,1,0,0,0,0,1,0,0,0},
+          {0,1,0,0,1,1,1,1,1,1,0,0,0},
+          {0,1,1,0,0,0,0,0,0,0,0,0,0},
           {0,0,0,0,0,0,0,0,0,0,0,0,0}
         };
         int [][] eigflaeche =              //Das labyrinth das es sich selbst erarbeiten wird
@@ -65,22 +55,22 @@ public class Labyrinth {
         int c=flaeche[a][b];
         
         while (c!=3){
-            if (flaeche[a][b+1]!=0 && (eigflaeche[a][b+1]==0 || eigflaeche[a][b+1]==3)) {  //gang nach rechts
+            if (flaeche[a][b+1]!=0 && eigflaeche[a][b+1]==0) {  //gang nach rechts
                 b++;
                 eigflaeche[a][b]=1;
                 k++;
                 weg[k]="rechts";
-            } else if(flaeche[a][b-1]!=0 && (eigflaeche[a][b-1]==0 || eigflaeche[a][b-1]==3)) {//gang nach links
+            } else if(flaeche[a][b-1]!=0 && eigflaeche[a][b-1]==0) {//gang nach links
                 b--;
                 eigflaeche[a][b]=1;
                 k++;
                 weg[k]="links";
-            } else if(flaeche[a-1][b]!=0 && (eigflaeche[a-1][b]==0 || eigflaeche[a-1][b]==3)) {//gang nach unten
+            } else if(flaeche[a-1][b]!=0 && eigflaeche[a-1][b]==0) {//gang nach unten
                 a--;
                 eigflaeche[a][b]=1;
                 k++;
                 weg[k]="oben";
-            } else if(flaeche[a+1][b]!=0 && (eigflaeche[a+1][b]==0 || eigflaeche[a+1][b]==3)) {//gang nach oben
+            } else if(flaeche[a+1][b]!=0 && eigflaeche[a+1][b]==0) {//gang nach oben
                 a++;
                 eigflaeche[a][b]=1;
                 k++;
@@ -129,6 +119,5 @@ public class Labyrinth {
         for (int i = 0; i < weg.length; i++) {
             System.out.println(weg[i] + i);
         }
-        
     }
 }
