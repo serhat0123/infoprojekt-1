@@ -107,7 +107,10 @@ public class oberflaeche extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        int c = 0;
+        while (c==0){
+            
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     public void zeichneBild(Graphics g){

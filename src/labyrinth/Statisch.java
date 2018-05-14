@@ -34,4 +34,5 @@ public class Statisch {
           {0,0,0,0,0,0,0,0,0,0,0,0,0},
           {0,0,0,0,0,0,0,0,0,0,0,0,0}
         };
+        public static String [] weg2 = new String [130];
 }

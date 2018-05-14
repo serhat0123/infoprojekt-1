@@ -46,15 +46,18 @@ public class Labyrinth {
         };
         
         String [] weg = new String [130];     //max. 130 einträge
+        String [] weg2 = new String [130];    //gibt weg auch mit fail abbiegungen wieder
         
         for (int i = 0; i < 130; i++) {
             weg[i]="0";
+            weg2[i]="0";
         }
         weg[0]="start";
         
         int a=1;    //1=nach unten 2=nach oben 3=nach links 4=nach rechts
         int b=1;
         int k=-1;
+        int p=-1;
         int c=flaeche[a][b];
         
         while (c!=3){
@@ -63,21 +66,33 @@ public class Labyrinth {
                 eigflaeche[a][b]=1;
                 k++;
                 weg[k]="rechts";
+                
+                p++;
+                weg2[p]="rechts";
             } else if(flaeche[a][b-1]!=0 && eigflaeche[a][b-1]==0) {//gang nach links
                 b--;
                 eigflaeche[a][b]=1;
                 k++;
                 weg[k]="links";
+                
+                p++;
+                weg2[p]="links";
             } else if(flaeche[a-1][b]!=0 && eigflaeche[a-1][b]==0) {//gang nach unten
                 a--;
                 eigflaeche[a][b]=1;
                 k++;
                 weg[k]="oben";
+                
+                p++;
+                weg2[p]="oben";
             } else if(flaeche[a+1][b]!=0 && eigflaeche[a+1][b]==0) {//gang nach oben
                 a++;
                 eigflaeche[a][b]=1;
                 k++;
                 weg[k]="unten";
+                
+                p++;
+                weg2[p]="unten";
             } 
             
                     else {          //else tritt in kraft wenn nicht nach oben, l. r. oder unten gegangen werden kann (ist aber auch nicht das Ziel 
@@ -88,28 +103,50 @@ public class Labyrinth {
                             b--;
                             weg[k]="0";
                             k--;
+                            
+                            p++;
+                            weg2[p]="links";
+                            
                         } else if ("links".equals(weg[k])){
                               eigflaeche[a][b]=2;
                             b++;
                             weg[k]="0";
                             k--; 
+                            
+                            p++;
+                            weg2[p]="rechts";
+                            
                         } else if ("oben".equals(weg[k])){
                             eigflaeche[a][b]=2;
                             a++;
                             weg[k]="0";
                             k--;
+                            
+                            p++;
+                            weg2[p]="unten";
+                            
                         } else if ("unten".equals(weg[k])){
                             eigflaeche[a][b]=2;
                             a--;
                             weg[k]="0";
                             k--;
+                            
+                            p++;
+                            weg2[p]="oben";
+                            
                         } 
                         
                     }
             
             c=flaeche[a][b];
+            
            }
+        
         Statisch.eigflaeche = eigflaeche;
+        Statisch.weg2 = weg2;
+        
+        
+        
         
         for (int zw = 0; zw < 10; zw++) {
             
@@ -121,7 +158,7 @@ public class Labyrinth {
         }
         System.out.println(c + ""+ a +b);
         for (int i = 0; i < weg.length; i++) {
-            System.out.println(weg[i] + i);
+            System.out.println(weg2[i] + i);
         }
     }
 }
