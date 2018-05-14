@@ -5,6 +5,7 @@
  */
 package labyrinth;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 /**
@@ -32,7 +33,12 @@ public class oberflaeche extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jCheckBox1 = new javax.swing.JCheckBox();
         jButton2 = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel(){
+            public void paintComponent(Graphics g){
+                super.paintComponent(g);
+                zeichneBild(g);
+            }
+        };
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -106,6 +112,17 @@ public class oberflaeche extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    public void zeichneBild(Graphics g){
+        int h = jPanel1.getHeight();
+        int w = jPanel1.getWidth();
+        h=h/10;
+        w=w/13;
+        g.setColor(Color.YELLOW);
+        for (int i = 0; i < 10; i++) {
+            g.fillRect(w, h, w, h);
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */

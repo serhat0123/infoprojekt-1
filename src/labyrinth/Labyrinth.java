@@ -16,6 +16,9 @@ public class Labyrinth {
      */
     public static void main(String[] args) {
         
+        oberflaeche o= new oberflaeche();
+        o.setVisible(true);
+        o.setTitle("Labyrinth");
         
         int [][] flaeche =              //Das labyrinth ansich aus 1 und 0
         { {0,0,0,0,0,0,0,0,0,0,0,0,0},
