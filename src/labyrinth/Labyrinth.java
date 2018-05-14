@@ -109,12 +109,13 @@ public class Labyrinth {
             
             c=flaeche[a][b];
            }
+        Statisch.eigflaeche = eigflaeche;
         
         for (int zw = 0; zw < 10; zw++) {
             
 
         for (int i = 0; i < 13; i++) {
-            System.out.print(eigflaeche[zw][i]+ "");
+            System.out.print(Statisch.eigflaeche[zw][i]+ "");
         }
             System.out.println("");
         }

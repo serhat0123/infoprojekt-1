@@ -117,10 +117,21 @@ public class oberflaeche extends javax.swing.JFrame {
         int w = jPanel1.getWidth();
         h=h/10;
         w=w/13;
-        g.setColor(Color.YELLOW);
-        for (int i = 0; i < 10; i++) {
-            g.fillRect(w, h, w, h);
+        int u = 2;
+        int v = 0;
+        
+        
+        for (int i = 0; i < 13; i++) {
+            g.setColor(Color.YELLOW);
+            if (Statisch.eigflaeche[u][v]==0) {
+              g.fillRect(i*w, u*h, (i+1)*w, (u+1)*h);  
+            }else {
+                
+            }
+            
+            v++;
         }
+        
     }
     
     /**
