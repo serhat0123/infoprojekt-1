@@ -108,8 +108,6 @@ public class oberflaeche extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        Labyrinth lab = new Labyrinth();    //dran arbeiten
-        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     public void zeichneBild(Graphics g){
@@ -117,21 +115,17 @@ public class oberflaeche extends javax.swing.JFrame {
         int w = jPanel1.getWidth();
         h=h/10;
         w=w/13;
-        int u = 2;
-        int v = 0;
+     
+        for (int u = 0; u < 10; u++) {
         
-        
-        for (int i = 0; i < 13; i++) {
-            g.setColor(Color.YELLOW);
-            if (Statisch.eigflaeche[u][v]==0) {
-              g.fillRect(i*w, u*h, (i+1)*w, (u+1)*h);  
-            }else {
-                
+            for (int i = 0; i < 13; i++) {
+                g.setColor(Color.BLACK);
+                    if (Statisch.eigflaeche[u][i]==0) {
+                      g.fillRect(i*w, u*h, w, h);  
+                    }else {
+                    }
             }
-            
-            v++;
-        }
-        
+        }   
     }
     
     /**
