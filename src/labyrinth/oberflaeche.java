@@ -125,7 +125,7 @@ public class oberflaeche extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
-        // TODO add your handling code here:
+        //STARTET DEN SCHNELLEN WEG
         Graphics2D g = (Graphics2D)jPanel1.getGraphics();
         
         int h = jPanel1.getHeight();
@@ -146,6 +146,8 @@ public class oberflaeche extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3MouseClicked
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        //CLEART ALLES
+        
         Graphics2D g = (Graphics2D)jPanel1.getGraphics();
         
         int h = jPanel1.getHeight();
@@ -155,7 +157,7 @@ public class oberflaeche extends javax.swing.JFrame {
         for (int u = 0; u < 10; u++) {   // zeichnet labyrint-layout
         
             for (int i = 0; i < 13; i++) {
-                    if (Statisch.eigflaeche[u][i]==1) { 
+                    if (Statisch.flaeche[u][i]==1) { 
                       g.clearRect(i*w, u*h, w, h);
                     }else {
                     }

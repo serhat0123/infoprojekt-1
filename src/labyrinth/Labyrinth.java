@@ -20,18 +20,11 @@ public class Labyrinth {
         o.setVisible(true);
         o.setTitle("Labyrinth");
         
-        int [][] flaeche =              //Das labyrinth ansich aus 1 und 0
-        { {0,0,0,0,0,0,0,0,0,0,0,0,0},
-          {0,1,0,1,1,1,1,1,1,1,1,1,0},
-          {0,1,1,1,0,0,0,1,0,1,0,1,0},
-          {0,0,0,0,0,0,0,1,0,1,1,1,0},
-          {0,1,1,1,1,1,1,1,0,0,0,0,0}, //ende ist 3 und p(1/1) ist anfang
-          {0,1,0,0,1,0,0,0,0,1,1,1,3},
-          {0,1,1,0,1,0,0,0,0,1,0,0,0},
-          {0,1,0,0,1,1,1,1,1,1,0,0,0},
-          {0,1,1,0,0,0,0,0,0,0,0,0,0},
-          {0,0,0,0,0,0,0,0,0,0,0,0,0}
-        };
+        
+        
+        int [][] flaeche =  new int [10][13];            //Entnehme Labyrinth aus Statischer Klasse
+        flaeche = Statisch.flaeche;
+
         int [][] eigflaeche =              //Das labyrinth das es sich selbst erarbeiten wird
         { {0,0,0,0,0,0,0,0,0,0,0,0,0},
           {0,1,0,0,0,0,0,0,0,0,0,0,0},
@@ -45,14 +38,17 @@ public class Labyrinth {
           {0,0,0,0,0,0,0,0,0,0,0,0,0}
         };
         
-        String [] weg = new String [130];     //max. 130 einträge
+        String [] weg = new String [130];     //max. 130 einträge/ gibt den perfekten weg wieder
         String [] weg2 = new String [130];    //gibt weg auch mit fail abbiegungen wieder
         
-        for (int i = 0; i < 130; i++) {
+        for (int i = 0; i < 130; i++) {     //"0" wir überall eingetragen zum start
             weg[i]="0";
             weg2[i]="0";
         }
         weg[0]="start";
+        weg2[0]="start";
+        
+        //JETZT FOLGT: EIN ALGORHYTMUS mit dem der Gang des Springers ermittelt werden kann: (von 51 - 140)
         
         int a=1;    //1=nach unten 2=nach oben 3=nach links 4=nach rechts
         int b=1;
@@ -94,6 +90,7 @@ public class Labyrinth {
                 p++;
                 weg2[p]="unten";
             } 
+            
             
                     else {          //else tritt in kraft wenn nicht nach oben, l. r. oder unten gegangen werden kann (ist aber auch nicht das Ziel 
                                     //    --> Sackgasse (auch ne schleife zählt dazu)
@@ -138,12 +135,12 @@ public class Labyrinth {
                         
                     }
             
-            c=flaeche[a][b];
+            c=flaeche[a][b];    //da c nun 3 ist hat es den weg gefunden
             
            }
         
-        Statisch.eigflaeche = eigflaeche;
-        Statisch.weg2 = weg2;
+        Statisch.eigflaeche = eigflaeche;   //  ermittelte eigenflaeche wird an die zwischen Klasse Statisch übergegeben 
+        Statisch.weg2 = weg2;               //      und der weg (weg 2) mit den fails auch
         
         
         
