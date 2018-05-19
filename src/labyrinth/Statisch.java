@@ -36,7 +36,9 @@ public class Statisch {
         };
         
         public static String [] weg2 = new String [130];    //Der Failweg WIRD HIERHER ÜBERGEBEN!
-        public static int z = 0;
-        public static int k = 0;
+        public static int z = 0;    //laufvariable für die failweg wiedergabe
+        public static int k = 0;    //laufvariable für randomfarben beim Schrittweisen weg
+        public static int a = 1;
+        public static int b = 1;
            
 }

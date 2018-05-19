@@ -155,7 +155,10 @@ public class Labyrinth {
         }
         System.out.println(c + ""+ a +b);
         for (int i = 0; i < weg.length; i++) {
-            System.out.println(weg2[i] + i);
+            if (weg2[i]!=Statisch.weg2[i]){
+                System.out.println(weg2[i] + i); 
+            }
+           
         }
     }
 }

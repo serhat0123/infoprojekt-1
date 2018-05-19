@@ -40,7 +40,6 @@ public class oberflaeche extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -72,17 +71,10 @@ public class oberflaeche extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setText(">");
+        jButton4.setText("Schrittweise -->");
         jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton4MouseClicked(evt);
-            }
-        });
-
-        jButton5.setText("<");
-        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton5MouseClicked(evt);
             }
         });
 
@@ -94,8 +86,6 @@ public class oberflaeche extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jButton3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -110,7 +100,6 @@ public class oberflaeche extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton3)
                     .addComponent(jButton1)
-                    .addComponent(jButton5)
                     .addComponent(jButton4))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -158,23 +147,13 @@ public class oberflaeche extends javax.swing.JFrame {
                     }
             }
         } 
+        Statisch.z=0;   //wichtige zurücksetzung der parameter für den schrittweisen weg
+        Statisch.a=1;
+        Statisch.b=1;
     }//GEN-LAST:event_jButton1MouseClicked
 
-    private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
-        //SCHRITWEISE - zurück
-        
-        Graphics2D g = (Graphics2D)jPanel1.getGraphics();
-        
-        int h = jPanel1.getHeight();
-        int w = jPanel1.getWidth();
-        h=h/10;
-        w=w/13;
-        int z = Statisch.z;
-
-    }//GEN-LAST:event_jButton5MouseClicked
-
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
-        //SCHRITWEISE - nach vorne
+        //SCHRITWEISE -->
         
         Graphics2D g = (Graphics2D)jPanel1.getGraphics();
                         
@@ -182,8 +161,8 @@ public class oberflaeche extends javax.swing.JFrame {
         int w = jPanel1.getWidth();
         h=h/10;
         w=w/13;
-        int a=0;
-        int b=0;
+        int a=Statisch.a;
+        int b=Statisch.b;
         
         int z = Statisch.z;
         
@@ -202,18 +181,23 @@ public class oberflaeche extends javax.swing.JFrame {
         Statisch.k=k;
         
             if ("rechts".equals(Statisch.weg2[z])){ 
+                        a++;
                         g.fillRect(a*w, b*h, w, h); 
             } else if ("links".equals(Statisch.weg2[z])){
+                        a--;
                         g.fillRect(a*w, b*h, w, h); 
             } else if ("oben".equals(Statisch.weg2[z])){
+                        b--;
                         g.fillRect(a*w, b*h, w, h); 
             } else if ("unten".equals(Statisch.weg2[z])){
-  
+                        b++;
                         g.fillRect(a*w, b*h, w, h); 
             } else {
             }
             z++;
             Statisch.z=z;
+            Statisch.a=a;
+            Statisch.b=b;
             
     }//GEN-LAST:event_jButton4MouseClicked
 
@@ -305,7 +289,6 @@ public class oberflaeche extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
