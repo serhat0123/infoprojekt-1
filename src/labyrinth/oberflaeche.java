@@ -39,7 +39,6 @@ public class oberflaeche extends javax.swing.JFrame {
         };
         jButton3 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
 
@@ -73,14 +72,17 @@ public class oberflaeche extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Schrittweise");
-
         jButton4.setText(">");
+        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton4MouseClicked(evt);
+            }
+        });
 
         jButton5.setText("<");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton5MouseClicked(evt);
             }
         });
 
@@ -93,16 +95,11 @@ public class oberflaeche extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jButton3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton4)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)))
+                .addComponent(jButton5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -112,27 +109,25 @@ public class oberflaeche extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton3)
-                    .addComponent(jButton2)
-                    .addComponent(jButton1))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton4)
-                    .addComponent(jButton5))
-                .addContainerGap(13, Short.MAX_VALUE))
+                    .addComponent(jButton1)
+                    .addComponent(jButton5)
+                    .addComponent(jButton4))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
-        //STARTET DEN SCHNELLEN WEG
+        //START - STARTET DEN SCHNELLEN WEG
+        
         Graphics2D g = (Graphics2D)jPanel1.getGraphics();
         
         int h = jPanel1.getHeight();
         int w = jPanel1.getWidth();
         h=h/10;
         w=w/13;
-        for (int u = 0; u < 10; u++) {   // zeichnet labyrint-layout
+        for (int u = 0; u < 10; u++) {
         
             for (int i = 0; i < 13; i++) {
                     if (Statisch.eigflaeche[u][i]==1) {
@@ -146,7 +141,7 @@ public class oberflaeche extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3MouseClicked
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        //CLEART ALLES
+        //RESET - CLEART ALLES
         
         Graphics2D g = (Graphics2D)jPanel1.getGraphics();
         
@@ -154,10 +149,10 @@ public class oberflaeche extends javax.swing.JFrame {
         int w = jPanel1.getWidth();
         h=h/10;
         w=w/13;
-        for (int u = 0; u < 10; u++) {   // zeichnet labyrint-layout
+        for (int u = 0; u < 10; u++) {
         
             for (int i = 0; i < 13; i++) {
-                    if (Statisch.flaeche[u][i]==1) { 
+                    if (Statisch.flaeche[u][i]!=0) {    //!=0 ist wichtig und nicht ==1 weil sonst das ziel (3) nicht gelöscht wird
                       g.clearRect(i*w, u*h, w, h);
                     }else {
                     }
@@ -165,13 +160,67 @@ public class oberflaeche extends javax.swing.JFrame {
         } 
     }//GEN-LAST:event_jButton1MouseClicked
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+    private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
+        //SCHRITWEISE - zurück
+        
+        Graphics2D g = (Graphics2D)jPanel1.getGraphics();
+        
+        int h = jPanel1.getHeight();
+        int w = jPanel1.getWidth();
+        h=h/10;
+        w=w/13;
+        int z = Statisch.z;
+
+    }//GEN-LAST:event_jButton5MouseClicked
+
+    private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
+        //SCHRITWEISE - nach vorne
+        
+        Graphics2D g = (Graphics2D)jPanel1.getGraphics();
+                        
+        int h = jPanel1.getHeight();
+        int w = jPanel1.getWidth();
+        h=h/10;
+        w=w/13;
+        int a=0;
+        int b=0;
+        
+        int z = Statisch.z;
+        
+        int k = Statisch.k;
+        
+        if (k==0){                      //randominzer für die farben beim schrittweisen vorgehen
+            g.setColor(Color.GREEN);
+            k++;
+        } else if (k==1){
+            g.setColor(Color.RED);
+            k++;
+        } else {
+            g.setColor(Color.BLUE);
+            k=0;
+        }
+        Statisch.k=k;
+        
+            if ("rechts".equals(Statisch.weg2[z])){ 
+                        g.fillRect(a*w, b*h, w, h); 
+            } else if ("links".equals(Statisch.weg2[z])){
+                        g.fillRect(a*w, b*h, w, h); 
+            } else if ("oben".equals(Statisch.weg2[z])){
+                        g.fillRect(a*w, b*h, w, h); 
+            } else if ("unten".equals(Statisch.weg2[z])){
+  
+                        g.fillRect(a*w, b*h, w, h); 
+            } else {
+            }
+            z++;
+            Statisch.z=z;
+            
+    }//GEN-LAST:event_jButton4MouseClicked
 
     
     
-    public void zeichneBild(Graphics g){       
+    public void zeichneBild(Graphics g){  
+        //zeichnet das labyrinth (schwarz)
         int h = jPanel1.getHeight();
         int w = jPanel1.getWidth();
         h=h/10;
@@ -254,7 +303,6 @@ public class oberflaeche extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;

@@ -36,6 +36,7 @@ public class Statisch {
         };
         
         public static String [] weg2 = new String [130];    //Der Failweg WIRD HIERHER ÜBERGEBEN!
-
+        public static int z = 0;
+        public static int k = 0;
            
 }
