@@ -7,6 +7,7 @@ package labyrinth;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 /**
  *
@@ -30,33 +31,15 @@ public class oberflaeche extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jButton2 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel(){
             public void paintComponent(Graphics g){
                 super.paintComponent(g);
                 zeichneBild(g);
             }
         };
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jButton1.setText("Start");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        jCheckBox1.setText("Schritt für Schritt");
-
-        jButton2.setText("Selbst Zeichnen");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
 
         jPanel1.setBackground(new java.awt.Color(204, 255, 102));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -66,69 +49,65 @@ public class oberflaeche extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 398, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 253, Short.MAX_VALUE)
+            .addGap(0, 261, Short.MAX_VALUE)
         );
+
+        jButton3.setText("Start");
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(57, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(18, 18, 18)
-                .addComponent(jButton2)
-                .addGap(48, 48, 48)
-                .addComponent(jCheckBox1)
-                .addContainerGap())
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton3)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jCheckBox1)
-                    .addComponent(jButton1))
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton3)
+                .addGap(8, 8, 8))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Graphics2D g = (Graphics2D)jPanel1.getGraphics();
+        
         int h = jPanel1.getHeight();
         int w = jPanel1.getWidth();
+        h=h/10;
+        w=w/13;
+        for (int u = 0; u < 10; u++) {   // zeichnet labyrint-layout
         
-        int c = 0;      //soll aus weg2 array den weg bekommen und dann zeichnen
-        String k;
-        int i = 0;
-        while (c==0){
-            k = Statisch.weg2[i];
-            if ("rechts".equals(Statisch.weg2[i])){ //weiterarbeiten: wie macht man das beim klick etwas gemalt wird und das gemalte bleibt? weil methode in method geht nicht
-                
-            } else if ("links".equals(Statisch.weg2[i])){
-                
-            } else if ("oben".equals(Statisch.weg2[i])){
-                
-            } else if ("unten".equals(Statisch.weg2[i])){
-                
-            } else {
-                c=1;
+            for (int i = 0; i < 13; i++) {
+                    if (Statisch.eigflaeche[u][i]==1) {
+                      g.setColor(Color.BLUE);  
+                      g.fillRect(i*w, u*h, w, h); 
+                    }else {
+                    }
             }
-        }
-    }//GEN-LAST:event_jButton1ActionPerformed
+        }  
+        
+    }//GEN-LAST:event_jButton3MouseClicked
 
+    
+    
     public void zeichneBild(Graphics g){       
         int h = jPanel1.getHeight();
         int w = jPanel1.getWidth();
@@ -138,14 +117,41 @@ public class oberflaeche extends javax.swing.JFrame {
         for (int u = 0; u < 10; u++) {   // zeichnet labyrint-layout
         
             for (int i = 0; i < 13; i++) {
-                g.setColor(Color.BLACK);
                     if (Statisch.eigflaeche[u][i]==0) {
-                      g.fillRect(i*w, u*h, w, h);  
+                      g.setColor(Color.BLACK);  
+                      g.fillRect(i*w, u*h, w, h); 
                     }else {
                     }
             }
         }   
+        
+       
     }
+    
+    /**
+     * int h = jPanel1.getHeight();
+        int w = jPanel1.getWidth();
+
+        int c = 0;      //soll aus weg2 array den weg bekommen und dann zeichnen
+        String k;
+        int i = 0;
+        while (c==0){
+            k = Statisch.weg2[i];
+            if ("rechts".equals(Statisch.weg2[i])){ //weiterarbeiten: wie macht man das beim klick etwas gemalt wird und das gemalte bleibt? weil methode in method geht nicht
+
+            } else if ("links".equals(Statisch.weg2[i])){
+
+            } else if ("oben".equals(Statisch.weg2[i])){
+
+            } else if ("unten".equals(Statisch.weg2[i])){
+
+            } else {
+                c=1;
+            }
+        }
+     */
+    
+   
     
     /**
      * @param args the command line arguments
@@ -184,9 +190,7 @@ public class oberflaeche extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JButton jButton3;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
