@@ -50,11 +50,11 @@ public class oberflaeche extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 398, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 265, Short.MAX_VALUE)
+            .addGap(0, 373, Short.MAX_VALUE)
         );
 
         jButton3.setText("Start");
@@ -82,26 +82,26 @@ public class oberflaeche extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton3)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 247, Short.MAX_VALUE)
+                        .addComponent(jButton1))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton3)
                     .addComponent(jButton1)
-                    .addComponent(jButton4))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButton4)))
         );
 
         pack();
@@ -180,16 +180,28 @@ public class oberflaeche extends javax.swing.JFrame {
         }
         Statisch.k=k;
         
-            if ("rechts".equals(Statisch.weg2[z])){ 
+            if ("rechts".equals(Statisch.weg3[z]) && "links".equals(Statisch.weg3[z-1])){
+                        g.clearRect(a*w, b*h, w, h);
+                        a++;
+            } else if ("links".equals(Statisch.weg3[z]) && "rechts".equals(Statisch.weg3[z-1])){
+                        g.clearRect(a*w, b*h, w, h);
+                        a--;
+            } else if ("oben".equals(Statisch.weg3[z]) && "unten".equals(Statisch.weg3[z-1])){
+                        g.clearRect(a*w, b*h, w, h);
+                        b--;
+            } else if ("unten".equals(Statisch.weg3[z]) && "oben".equals(Statisch.weg3[z-1])){
+                        g.clearRect(a*w, b*h, w, h);
+                        b++;
+            } else if ("rechts".equals(Statisch.weg3[z])){ 
                         a++;
                         g.fillRect(a*w, b*h, w, h); 
-            } else if ("links".equals(Statisch.weg2[z])){
+            } else if ("links".equals(Statisch.weg3[z])){
                         a--;
                         g.fillRect(a*w, b*h, w, h); 
-            } else if ("oben".equals(Statisch.weg2[z])){
+            } else if ("oben".equals(Statisch.weg3[z])){
                         b--;
                         g.fillRect(a*w, b*h, w, h); 
-            } else if ("unten".equals(Statisch.weg2[z])){
+            } else if ("unten".equals(Statisch.weg3[z])){
                         b++;
                         g.fillRect(a*w, b*h, w, h); 
             } else {
@@ -223,29 +235,6 @@ public class oberflaeche extends javax.swing.JFrame {
         
        
     }
-    
-    /**
-     * int h = jPanel1.getHeight();
-        int w = jPanel1.getWidth();
-
-        int c = 0;      //soll aus weg2 array den weg bekommen und dann zeichnen
-        String k;
-        int i = 0;
-        while (c==0){
-            k = Statisch.weg2[i];
-            if ("rechts".equals(Statisch.weg2[i])){ //weiterarbeiten: wie macht man das beim klick etwas gemalt wird und das gemalte bleibt? weil methode in method geht nicht
-
-            } else if ("links".equals(Statisch.weg2[i])){
-
-            } else if ("oben".equals(Statisch.weg2[i])){
-
-            } else if ("unten".equals(Statisch.weg2[i])){
-
-            } else {
-                c=1;
-            }
-        }
-     */
     
    
     

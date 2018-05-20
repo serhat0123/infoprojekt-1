@@ -141,6 +141,9 @@ public class Labyrinth {
         
         Statisch.eigflaeche = eigflaeche;   //  ermittelte eigenflaeche wird an die zwischen Klasse Statisch übergegeben 
         Statisch.weg2 = weg2;               //      und der weg (weg 2) mit den fails auch
+        for (int i = 0; i < 130; i++) {
+            Statisch.weg3[i+1]=weg2[i];
+        }
         
         
         
