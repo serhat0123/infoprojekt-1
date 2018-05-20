@@ -205,10 +205,10 @@ public class oberflaeche extends javax.swing.JFrame {
         
         g.setColor(Color.RED);
         
-            if ("rechts".equals(Statisch.weg2[z])){
-                        g.clearRect(a*w, b*h, w, h);
-                        a++;
-                        g.fillRect(a*w, b*h, w, h);
+            if ("rechts".equals(Statisch.weg2[z])){         //vergleicht ob der weg jetzt nach rechts "zeigt"
+                        g.clearRect(a*w, b*h, w, h);        //clear seinen jetzigen standpunkt
+                        a++;                                //geht nach rechts
+                        g.fillRect(a*w, b*h, w, h);         //zeichnet auf seiner jetzigen neuen position (rechts) ein rechteck
             } else if ("links".equals(Statisch.weg2[z])){
                         g.clearRect(a*w, b*h, w, h);
                         a--;
@@ -221,7 +221,9 @@ public class oberflaeche extends javax.swing.JFrame {
                         g.clearRect(a*w, b*h, w, h);
                         b++;
                         g.fillRect(a*w, b*h, w, h);
-            } else {    g.fillRect(a*w, b*h, w, h);
+            } else {                                        //else tritt ein wenn er am ende angelangt ist
+                        g.fillRect(a*w, b*h, w, h);         //zeichnet immer das end-rechteck neu - sonst würde es verloren gehen
+                        z--;                                //z-- da spätter z++ um es auszugleichen da es das ziel ist (schwer zu verstehen/ muss man sich reindenken/ war bisschen try and error)
             }
             z++;
             Statisch.z=z;
