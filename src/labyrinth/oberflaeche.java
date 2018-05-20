@@ -40,6 +40,7 @@ public class oberflaeche extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -71,10 +72,17 @@ public class oberflaeche extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setText("Schrittweise -->");
+        jButton4.setText(">");
         jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton4MouseClicked(evt);
+            }
+        });
+
+        jButton2.setText("<");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
             }
         });
 
@@ -86,9 +94,11 @@ public class oberflaeche extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton3)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 247, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 280, Short.MAX_VALUE)
                         .addComponent(jButton1))
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -101,7 +111,8 @@ public class oberflaeche extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton3)
                     .addComponent(jButton1)
-                    .addComponent(jButton4)))
+                    .addComponent(jButton4)
+                    .addComponent(jButton2)))
         );
 
         pack();
@@ -116,6 +127,18 @@ public class oberflaeche extends javax.swing.JFrame {
         int w = jPanel1.getWidth();
         h=h/10;
         w=w/13;
+        
+        //zuerst wieder alles clearen bevor neu gezeichnet wird
+        for (int u = 0; u < 10; u++) {
+        
+            for (int i = 0; i < 13; i++) {
+                    if (Statisch.flaeche[u][i]!=0) {    //!=0 ist wichtig und nicht ==1 weil sonst das ziel (3) nicht gelöscht wird
+                      g.clearRect(i*w, u*h, w, h);
+                    }else {
+                    }
+            }
+        } 
+        
         for (int u = 0; u < 10; u++) {
         
             for (int i = 0; i < 13; i++) {
@@ -126,7 +149,9 @@ public class oberflaeche extends javax.swing.JFrame {
                     }
             }
         }  
-        
+        Statisch.z=0;   //wichtige zurücksetzung der parameter für den schrittweisen weg
+        Statisch.a=1;
+        Statisch.b=1;
     }//GEN-LAST:event_jButton3MouseClicked
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
@@ -153,7 +178,7 @@ public class oberflaeche extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
-        //SCHRITWEISE -->
+        //SCHRITWEISE - nach vorne
         
         Graphics2D g = (Graphics2D)jPanel1.getGraphics();
                         
@@ -163,6 +188,18 @@ public class oberflaeche extends javax.swing.JFrame {
         w=w/13;
         int a=Statisch.a;
         int b=Statisch.b;
+        
+        
+        //zuerst wieder alles clearen bevor neu gezeichnet wird
+        for (int u = 0; u < 10; u++) {
+        
+            for (int i = 0; i < 13; i++) {
+                    if (Statisch.flaeche[u][i]!=0) {    //!=0 ist wichtig und nicht ==1 weil sonst das ziel (3) nicht gelöscht wird
+                      g.clearRect(i*w, u*h, w, h);
+                    }else {
+                    }
+            }
+        } 
         
         int z = Statisch.z; //integer für die Wegabfrage
         
@@ -184,7 +221,7 @@ public class oberflaeche extends javax.swing.JFrame {
                         g.clearRect(a*w, b*h, w, h);
                         b++;
                         g.fillRect(a*w, b*h, w, h);
-            } else {
+            } else {    g.fillRect(a*w, b*h, w, h);
             }
             z++;
             Statisch.z=z;
@@ -192,6 +229,64 @@ public class oberflaeche extends javax.swing.JFrame {
             Statisch.b=b;
             
     }//GEN-LAST:event_jButton4MouseClicked
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        //SCHRITTWEISE - zurück
+        
+        Graphics2D g = (Graphics2D)jPanel1.getGraphics();
+                        
+        int h = jPanel1.getHeight();
+        int w = jPanel1.getWidth();
+        h=h/10;
+        w=w/13;
+        int a=Statisch.a;
+        int b=Statisch.b;
+        
+        
+        //zuerst wieder alles clearen bevor neu gezeichnet wird
+        for (int u = 0; u < 10; u++) {
+        
+            for (int i = 0; i < 13; i++) {
+                    if (Statisch.flaeche[u][i]!=0) {    //!=0 ist wichtig und nicht ==1 weil sonst das ziel (3) nicht gelöscht wird
+                      g.clearRect(i*w, u*h, w, h);
+                    }else {
+                    }
+            }
+        } 
+        
+        int z = Statisch.z; //integer für die Wegabfrage
+        
+        g.setColor(Color.RED);
+        
+        
+        
+            if(z!=0) {
+                    if ("rechts".equals(Statisch.weg2[z-1])){
+                            g.clearRect(a*w, b*h, w, h);
+                            a--;
+                            g.fillRect(a*w, b*h, w, h);
+                } else if ("links".equals(Statisch.weg2[z-1])){
+                            g.clearRect(a*w, b*h, w, h);
+                            a++;
+                            g.fillRect(a*w, b*h, w, h);
+                } else if ("oben".equals(Statisch.weg2[z-1])){
+                            g.clearRect(a*w, b*h, w, h);
+                            b++;
+                            g.fillRect(a*w, b*h, w, h);
+                } else if ("unten".equals(Statisch.weg2[z-1])){
+                            g.clearRect(a*w, b*h, w, h);
+                            b--;
+                            g.fillRect(a*w, b*h, w, h);
+                } else {
+                }
+
+            z--;
+            Statisch.z=z;
+            Statisch.a=a;
+            Statisch.b=b;
+            
+            }
+    }//GEN-LAST:event_jButton2MouseClicked
 
     
     
@@ -256,6 +351,7 @@ public class oberflaeche extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JPanel jPanel1;
