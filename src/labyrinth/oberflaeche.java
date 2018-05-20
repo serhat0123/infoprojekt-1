@@ -164,46 +164,26 @@ public class oberflaeche extends javax.swing.JFrame {
         int a=Statisch.a;
         int b=Statisch.b;
         
-        int z = Statisch.z;
+        int z = Statisch.z; //integer für die Wegabfrage
         
-        int k = Statisch.k;
+        g.setColor(Color.RED);
         
-        if (k==0){                      //randominzer für die farben beim schrittweisen vorgehen
-            g.setColor(Color.GREEN);
-            k++;
-        } else if (k==1){
-            g.setColor(Color.RED);
-            k++;
-        } else {
-            g.setColor(Color.BLUE);
-            k=0;
-        }
-        Statisch.k=k;
-        
-            if ("rechts".equals(Statisch.weg3[z]) && "links".equals(Statisch.weg3[z-1])){
+            if ("rechts".equals(Statisch.weg2[z])){
                         g.clearRect(a*w, b*h, w, h);
                         a++;
-            } else if ("links".equals(Statisch.weg3[z]) && "rechts".equals(Statisch.weg3[z-1])){
+                        g.fillRect(a*w, b*h, w, h);
+            } else if ("links".equals(Statisch.weg2[z])){
                         g.clearRect(a*w, b*h, w, h);
                         a--;
-            } else if ("oben".equals(Statisch.weg3[z]) && "unten".equals(Statisch.weg3[z-1])){
+                        g.fillRect(a*w, b*h, w, h);
+            } else if ("oben".equals(Statisch.weg2[z])){
                         g.clearRect(a*w, b*h, w, h);
                         b--;
-            } else if ("unten".equals(Statisch.weg3[z]) && "oben".equals(Statisch.weg3[z-1])){
+                        g.fillRect(a*w, b*h, w, h);
+            } else if ("unten".equals(Statisch.weg2[z])){
                         g.clearRect(a*w, b*h, w, h);
                         b++;
-            } else if ("rechts".equals(Statisch.weg3[z])){ 
-                        a++;
-                        g.fillRect(a*w, b*h, w, h); 
-            } else if ("links".equals(Statisch.weg3[z])){
-                        a--;
-                        g.fillRect(a*w, b*h, w, h); 
-            } else if ("oben".equals(Statisch.weg3[z])){
-                        b--;
-                        g.fillRect(a*w, b*h, w, h); 
-            } else if ("unten".equals(Statisch.weg3[z])){
-                        b++;
-                        g.fillRect(a*w, b*h, w, h); 
+                        g.fillRect(a*w, b*h, w, h);
             } else {
             }
             z++;
