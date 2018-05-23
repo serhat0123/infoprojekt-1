@@ -37,7 +37,7 @@ public class zeichnen extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jPanel1MouseClicked(evt);
@@ -124,11 +124,18 @@ public class zeichnen extends javax.swing.JFrame {
         y=evt.getY();
         y=y-(y%h);
 
-        g.setColor(Color.red);
+        
+        if (evt.getX()<13*w && evt.getY()<10*h && jCheckBox1.isSelected()==false){
+        g.setColor(Color.DARK_GRAY);
         g.fillRect(x, y, w, h);
-        g.setColor(Color.BLACK);
-        g.drawRect(x, y, w, h);
 
+        } else if(evt.getX()<13*w && evt.getY()<10*h && jCheckBox1.isSelected()==true){
+            g.clearRect(x, y, w, h);
+            
+        }else{
+            
+        }
+        
     }//GEN-LAST:event_jPanel1MouseClicked
 
     /**
