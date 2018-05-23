@@ -24,7 +24,9 @@ public class Labyrinth {
         
         
         int [][] flaeche =  new int [10][13];            //Entnehme Labyrinth aus Statischer Klasse
-        flaeche = Statisch.flaeche;
+        
+            flaeche = Statisch.flaeche;
+
 
         int [][] eigflaeche =              //Das labyrinth das es sich selbst erarbeiten wird
         { {0,0,0,0,0,0,0,0,0,0,0,0,0},

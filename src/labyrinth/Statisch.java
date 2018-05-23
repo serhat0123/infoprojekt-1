@@ -10,6 +10,7 @@ package labyrinth;
  * @author s.nalcakan
  */
 public class Statisch {
+    
     public static int [][] flaeche =              //Das labyrinth das vorgegeben ist und zur eigendlichen klasse die das verarbeitet übergegben wird
         { {0,0,0,0,0,0,0,0,0,0,0,0,0},
           {0,1,0,1,1,1,1,1,1,1,1,1,0},
@@ -41,5 +42,17 @@ public class Statisch {
         public static int z = 0;    //laufvariable für die failweg wiedergabe
         public static int a = 1;    
         public static int b = 1;
-           
+        
+        public static int [][] zeichen =              //Das labyrinth das vorgegeben ist und zur eigendlichen klasse die das verarbeitet übergegben wird
+        { {0,0,0,0,0,0,0,0,0,0,0,0,0},
+          {0,1,1,1,1,1,1,1,1,1,1,1,0},
+          {0,1,1,1,1,1,1,1,1,1,1,1,0},
+          {0,1,1,1,1,1,1,1,1,1,1,1,0},
+          {0,1,1,1,1,1,1,1,1,1,1,1,0},
+          {0,1,1,1,1,1,1,1,1,1,1,1,3},      //ende ist 3 und p(1/1) ist anfang
+          {0,1,1,1,1,1,1,1,1,1,1,1,0},
+          {0,1,1,1,1,1,1,1,1,1,1,1,0},
+          {0,1,1,1,1,1,1,1,1,1,1,1,0},
+          {0,0,0,0,0,0,0,0,0,0,0,0,0}
+        };
 }

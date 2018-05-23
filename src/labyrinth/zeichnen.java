@@ -68,6 +68,11 @@ public class zeichnen extends javax.swing.JFrame {
                 jButton3MouseClicked(evt);
             }
         });
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jCheckBox1.setText("Löschen");
 
@@ -125,18 +130,40 @@ public class zeichnen extends javax.swing.JFrame {
         y=y-(y%h);
 
         
-        if (evt.getX()<13*w && evt.getY()<10*h && jCheckBox1.isSelected()==false){
+        //wenn r stimmt: dann ist der courser im "feld" drin und nicht auf den grenzen bzw. darüber
+        int r;
+        
+        if (evt.getX()>w && evt.getX()<12*w && evt.getY()>h && evt.getY()<9*h) {
+            r=1;
+        } else {
+            r=0;
+        }
+        
+        if (jCheckBox1.isSelected()==false && r==1){
         g.setColor(Color.DARK_GRAY);
         g.fillRect(x, y, w, h);
-
-        } else if(evt.getX()<13*w && evt.getY()<10*h && jCheckBox1.isSelected()==true){
+            Statisch.zeichen[y/h][x/w]=0;
+        } else if(jCheckBox1.isSelected()==true && r==1){
             g.clearRect(x, y, w, h);
-            
+            Statisch.zeichen[y/h][x/w]=1;
         }else{
             
         }
         
     }//GEN-LAST:event_jPanel1MouseClicked
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // FERTIG
+        new oberflaeche().setVisible(true);
+        for (int zw = 0; zw < 10; zw++) {
+            
+
+        for (int i = 0; i < 13; i++) {
+            System.out.print(Statisch.zeichen[zw][i]+ "");
+        }
+            System.out.println("");
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
