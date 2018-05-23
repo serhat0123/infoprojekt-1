@@ -16,7 +16,8 @@ public class Labyrinth {
      */
     public static void main(String[] args) {
         
-        oberflaeche o= new oberflaeche();
+        //oberflaeche o= new oberflaeche();
+        zeichnen o= new zeichnen();
         o.setVisible(true);
         o.setTitle("Labyrinth");
         
