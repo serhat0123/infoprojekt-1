@@ -12,7 +12,7 @@ package labyrinth;
 public class Labyrinth {
 
     /**
-     * @param args the command line arguments
+     * Die berechnungsmethode wird aufgerufen
      */
     public static void main(String[] args) {
         
@@ -20,7 +20,7 @@ public class Labyrinth {
         //zeichnen o= new zeichnen();
         o.setVisible(true);
         o.setTitle("Labyrinth");
-        
+        berechnungStatisch.berechnen();
         
 
     }

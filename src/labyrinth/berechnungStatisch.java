@@ -51,7 +51,7 @@ public class berechnungStatisch {
         weg[0]="start";
         weg2[0]="start";
         
-        //JETZT FOLGT: EIN ALGORHYTMUS mit dem der Gang des Springers ermittelt werden kann: (von 51 - 140)
+        //JETZT FOLGT: EIN ALGORHYTMUS mit dem der Gang des Springers ermittelt werden kann:
         
         int a=1;    //1=nach unten 2=nach oben 3=nach links 4=nach rechts
         int b=1;

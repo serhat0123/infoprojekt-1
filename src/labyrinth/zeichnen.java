@@ -156,6 +156,7 @@ public class zeichnen extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // FERTIG
+        setVisible(false);
         new oberflaeche().setVisible(true);
         for (int zw = 0; zw < 10; zw++) {
             

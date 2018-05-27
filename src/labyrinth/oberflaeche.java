@@ -59,6 +59,8 @@ public class oberflaeche extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -104,6 +106,20 @@ public class oberflaeche extends javax.swing.JFrame {
             }
         });
 
+        jButton5.setText("selbst zeichnen");
+        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton5MouseClicked(evt);
+            }
+        });
+
+        jButton6.setText("Standart Labyrinth benuzten");
+        jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton6MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -114,7 +130,11 @@ public class oberflaeche extends javax.swing.JFrame {
                 .addComponent(jButton2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 275, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton6)
+                .addGap(18, 18, 18)
                 .addComponent(jButton1)
                 .addContainerGap())
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -128,7 +148,9 @@ public class oberflaeche extends javax.swing.JFrame {
                     .addComponent(jButton3)
                     .addComponent(jButton1)
                     .addComponent(jButton4)
-                    .addComponent(jButton2)))
+                    .addComponent(jButton2)
+                    .addComponent(jButton5)
+                    .addComponent(jButton6)))
         );
 
         pack();
@@ -306,6 +328,21 @@ public class oberflaeche extends javax.swing.JFrame {
             }
     }//GEN-LAST:event_jButton2MouseClicked
 
+    private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
+        // selbst zeichnen wird geöffnet:
+        setVisible(false);
+        new zeichnen().setVisible(true);
+    }//GEN-LAST:event_jButton5MouseClicked
+
+    private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
+        // Standart Labyrinth benutzen:
+        Statisch.flaeche=Statisch.flaeche_fest;
+        berechnungStatisch.berechnen();
+        Statisch.z=0;   //wichtige zurücksetzung der parameter für den schrittweisen weg
+        Statisch.a=1;
+        Statisch.b=1;
+    }//GEN-LAST:event_jButton6MouseClicked
+
     
     
     public void zeichneBild(Graphics g){  
@@ -318,7 +355,7 @@ public class oberflaeche extends javax.swing.JFrame {
         for (int u = 0; u < 10; u++) {   // zeichnet labyrint-layout
         
             for (int i = 0; i < 13; i++) {
-                    if (Statisch.eigflaeche[u][i]==0) {
+                    if (Statisch.flaeche[u][i]==0) {
                       g.setColor(Color.BLACK);  
                       g.fillRect(i*w, u*h, w, h); 
                     }else {
@@ -372,6 +409,8 @@ public class oberflaeche extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
