@@ -15,7 +15,10 @@ import java.awt.Graphics2D;
 public class zeichnen extends javax.swing.JFrame {
 
     /**
-     * Creates new form zeichnen
+     * Das Zeicchenbrett:
+     *      Das jPanel bekommt die position des Maus und wenn diese im rhamen liegt wird der anvisierte block entweder gesetzt oder gelöscht (die Mauer)
+     *      Dabei wird in Statisch.zeichnen der gesetzte Block/die Mauer gespeichert
+     * 
      */
     public zeichnen() {
         initComponents();
@@ -147,7 +150,6 @@ public class zeichnen extends javax.swing.JFrame {
             g.clearRect(x, y, w, h);
             Statisch.zeichen[y/h][x/w]=1;
         }else{
-            
         }
         
     }//GEN-LAST:event_jPanel1MouseClicked
