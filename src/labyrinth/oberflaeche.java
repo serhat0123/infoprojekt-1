@@ -181,8 +181,8 @@ public class oberflaeche extends javax.swing.JFrame {
         
             for (int i = 0; i < 13; i++) {
                     if (Statisch.eigflaeche[u][i]==1) {
-                      g.setColor(Color.BLUE);  
-                      g.fillRect(i*w, u*h, w, h); 
+                      g.setColor(Color.YELLOW);  
+                      g.fillRect(i*w, u*h, w, h);
                     }else {
                     }
             }
