@@ -114,7 +114,18 @@ public class zeichnen extends javax.swing.JFrame {
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
         // FERTIG
  
-        Statisch.flaeche=Statisch.zeichnen;
+        
+        //Statisch.flaeche=Statisch.zeichnen; Das ist nicht das selbe wie die gleichsetzung durch die forschleifen; das ist eine Zuweisung
+        
+        
+        for (int u = 1; u < 9; u++) {   // zeichenbrett wird zurückgesetzt
+            
+        
+            for (int i = 1; i < 12; i++) {
+                    Statisch.flaeche[u][i]=Statisch.zeichnen[u][i];
+            }
+        }
+        
         berechnungStatisch.berechnen();
         
         Statisch.z=0;
