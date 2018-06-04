@@ -25,8 +25,18 @@ public class berechnungStatisch {
                 
         int [][] flaeche =  new int [10][13];            //Entnehme Labyrinth aus Statischer Klasse
         
+
+        
             flaeche = Statisch.flaeche;
 
+            //wegen Problemen beim Abbrechen, da es einfach neu zeichnen lässt mach ich ddas hier:
+            //wenn fetig gedrückt wurde soll durch eine zwischenvariable das gedrückte erkennbar gemacht weden, zeichnen an flaeche gegeben werden und die zwischenvariable
+            //      soll wieder zurückgesetztwerden
+            //das klappt weil wenn abbruch gedrückt wurde die flaeche einfach nicht vergeben wird
+            
+            
+            
+            
 
         int [][] eigflaeche =              //Das labyrinth das es sich selbst erarbeiten wird
         { {0,0,0,0,0,0,0,0,0,0,0,0,0},
@@ -143,10 +153,9 @@ public class berechnungStatisch {
            }
         
         Statisch.eigflaeche = eigflaeche;   //  ermittelte eigenflaeche wird an die zwischen Klasse Statisch übergegeben 
+        Statisch.weg = weg;
         Statisch.weg2 = weg2;               //      und der weg (weg 2) mit den fails auch
-        
-        
-        
+
         
         for (int zw = 0; zw < 10; zw++) {
             

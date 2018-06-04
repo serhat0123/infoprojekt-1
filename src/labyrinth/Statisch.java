@@ -24,13 +24,13 @@ public class Statisch {
           {0,0,0,0,0,0,0,0,0,0,0,0,0}
         };
     
-    public static int [][] flaeche_fest =              //Das labyrinth das vorgegeben ist und zur eigendlichen klasse die das verarbeitet übergegben wird
+    public static int [][] flaeche_fest =
         { {0,0,0,0,0,0,0,0,0,0,0,0,0},
           {0,1,0,1,1,1,1,1,1,1,1,1,0},
           {0,1,1,1,0,0,0,1,0,1,0,1,0},
           {0,0,0,0,0,0,0,1,0,1,1,1,0},
           {0,1,1,1,1,1,1,1,0,0,0,0,0},
-          {0,1,0,0,1,0,0,0,0,1,1,1,3},      //ende ist 3 und p(1/1) ist anfang
+          {0,1,0,0,1,0,0,0,0,1,1,1,3},
           {0,1,1,0,1,0,0,0,0,1,0,0,0},
           {0,1,0,0,1,1,1,1,1,1,0,0,0},
           {0,1,1,0,0,0,0,0,0,0,0,0,0},
@@ -50,6 +50,7 @@ public class Statisch {
           {0,0,0,0,0,0,0,0,0,0,0,0,0}
         };
         
+        public static String [] weg = new String [130];     //Der Failweg WIRD HIERHER ÜBERGEBEN!
         public static String [] weg2 = new String [130];    //Der Failweg WIRD HIERHER ÜBERGEBEN!
         
         //für die Schrittweise Visualisierung
@@ -57,7 +58,7 @@ public class Statisch {
         public static int a = 1;    
         public static int b = 1;
         
-        public static int [][] zeichen =              //Das labyrinth das vorgegeben ist und zur eigendlichen klasse die das verarbeitet übergegben wird
+        public static int [][] zeichnen =              //Das labyrinth das vorgegeben ist und zur eigendlichen klasse die das verarbeitet übergegben wird
         { {0,0,0,0,0,0,0,0,0,0,0,0,0},
           {0,1,1,1,1,1,1,1,1,1,1,1,0},
           {0,1,1,1,1,1,1,1,1,1,1,1,0},
@@ -70,16 +71,9 @@ public class Statisch {
           {0,0,0,0,0,0,0,0,0,0,0,0,0}
         };
         
-        public static int [][] zeichen_fest =              //Das labyrinth das vorgegeben ist und zur eigendlichen klasse die das verarbeitet übergegben wird
-        { {0,0,0,0,0,0,0,0,0,0,0,0,0},
-          {0,1,1,1,1,1,1,1,1,1,1,1,0},
-          {0,1,1,1,1,1,1,1,1,1,1,1,0},
-          {0,1,1,1,1,1,1,1,1,1,1,1,0},
-          {0,1,1,1,1,1,1,1,1,1,1,1,0},
-          {0,1,1,1,1,1,1,1,1,1,1,1,3},      //ende ist 3 und p(1/1) ist anfang
-          {0,1,1,1,1,1,1,1,1,1,1,1,0},
-          {0,1,1,1,1,1,1,1,1,1,1,1,0},
-          {0,1,1,1,1,1,1,1,1,1,1,1,0},
-          {0,0,0,0,0,0,0,0,0,0,0,0,0}
-        };
+        
+        
+        public static int a_zeich_start=1;
+        public static int b_zeich_start=1;
+        
 }

@@ -190,6 +190,43 @@ public class oberflaeche extends javax.swing.JFrame {
         Statisch.z=0;   //wichtige zurücksetzung der parameter für den schrittweisen weg
         Statisch.a=1;
         Statisch.b=1;
+        
+        g.setColor(Color.RED);
+        
+        int x=1;
+        int y=1;
+        
+        
+        //zeichnet die roten linien 
+        
+        
+        //////////////////////////////////////////////////////SPÄTER MACHEN!!!!!!!!!!!//////////////////////////////
+        /**for (int i = 0; i < 130; i++) {
+           if ("rechts".equals(Statisch.weg[i])){
+                        x++;
+                        g.drawLine(x*w, y*h+h/2, x*w+w, y*h+h/2);
+                        g.drawLine(x*w+w-w/4, y*h+h/4, x*w+w, y*h+h/2);
+                        g.drawLine(x*w+w-w/4, y*h+h-h/4, x*w+w, y*h+h/2);
+           } else if ("links".equals(Statisch.weg[i])){
+                        x--;
+                        g.drawLine(x*w, y*h+h/2, x*w+w, y*h+h/2);
+                        g.drawLine(x*w+w/4, y*h+h/4, x*w, y*h+h/2);
+                        g.drawLine(x*w+w/4, y*h+h-h/4, x*w, y*h+h/2);
+            } else if ("oben".equals(Statisch.weg[i])){
+                        y--;
+                        g.drawLine(x*w+w/2, y*h, x*w+w/2, y*h+h);
+            } else if ("unten".equals(Statisch.weg[i])){
+                        y++;
+                        g.drawLine(x*w+w/2, y*h, x*w+w/2, y*h+h);
+            } else {
+            } 
+        }
+        * */
+        
+        for (int i = 0; i < 130; i++) {
+            System.out.println(""+Statisch.weg[i]);
+        }
+        
     }//GEN-LAST:event_jButton3MouseClicked
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
@@ -332,12 +369,23 @@ public class oberflaeche extends javax.swing.JFrame {
         // selbst zeichnen wird geöffnet:
         setVisible(false);
         new zeichnen().setVisible(true);
+        
+        
+        for (int u = 1; u < 9; u++) {   // zeichenbrett wird zurückgesetzt
+            
+        
+            for (int i = 1; i < 12; i++) {
+                    Statisch.zeichnen[u][i]=1;
+            }
+        }
     }//GEN-LAST:event_jButton5MouseClicked
 
     private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
         // Standart Labyrinth benutzen:
+        setVisible(false);
         Statisch.flaeche=Statisch.flaeche_fest;
         berechnungStatisch.berechnen();
+        setVisible(true);
         Statisch.z=0;   //wichtige zurücksetzung der parameter für den schrittweisen weg
         Statisch.a=1;
         Statisch.b=1;
