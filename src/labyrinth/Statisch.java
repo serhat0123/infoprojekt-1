@@ -73,7 +73,4 @@ public class Statisch {
         
         
         
-        public static int a_zeich_start=1;
-        public static int b_zeich_start=1;
-        
 }

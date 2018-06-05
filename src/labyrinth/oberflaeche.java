@@ -112,6 +112,11 @@ public class oberflaeche extends javax.swing.JFrame {
                 jButton5MouseClicked(evt);
             }
         });
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jButton6.setText("Standart Labyrinth benuzten");
         jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -186,46 +191,36 @@ public class oberflaeche extends javax.swing.JFrame {
                     }else {
                     }
             }
-        }  
+        }
+        int kk=0;
+        int a=1;
+        int b=2;
+        int z=1;
+            
+        while (kk==0){
+            g.setColor(Color.red);
+            if ("rechts".equals(Statisch.weg[z])){
+                        g.drawLine(a*w+w/2, b*h+h/2, a*w+w/2+w, b*h+h/2);
+                        a++;
+            } else if ("links".equals(Statisch.weg[z])){
+                        g.drawLine(a*w+w/2, b*h+h/2, a*w+w/2-w, b*h+h/2);
+                        a--;
+            } else if ("oben".equals(Statisch.weg[z])){
+                        g.drawLine(a*w+w/2, b*h+h/2, a*w+w/2, b*h+h/2-h);
+                        b--;
+            } else if ("unten".equals(Statisch.weg[z])){
+                        g.drawLine(a*w+w/2, b*h+h/2, a*w+w/2, b*h+h/2+h);
+                        b++;
+                        
+            } else {                                        //else tritt ein wenn "0" im Array steht-->fertig "gegangen"
+                kk=1;
+            }
+            z++;
+        }
+        
         Statisch.z=0;   //wichtige zurücksetzung der parameter für den schrittweisen weg
         Statisch.a=1;
         Statisch.b=1;
-        
-        g.setColor(Color.RED);
-        
-        int x=1;
-        int y=1;
-        
-        
-        //zeichnet die roten linien 
-        
-        
-        //////////////////////////////////////////////////////SPÄTER MACHEN!!!!!!!!!!!//////////////////////////////
-        /**for (int i = 0; i < 130; i++) {
-           if ("rechts".equals(Statisch.weg[i])){
-                        x++;
-                        g.drawLine(x*w, y*h+h/2, x*w+w, y*h+h/2);
-                        g.drawLine(x*w+w-w/4, y*h+h/4, x*w+w, y*h+h/2);
-                        g.drawLine(x*w+w-w/4, y*h+h-h/4, x*w+w, y*h+h/2);
-           } else if ("links".equals(Statisch.weg[i])){
-                        x--;
-                        g.drawLine(x*w, y*h+h/2, x*w+w, y*h+h/2);
-                        g.drawLine(x*w+w/4, y*h+h/4, x*w, y*h+h/2);
-                        g.drawLine(x*w+w/4, y*h+h-h/4, x*w, y*h+h/2);
-            } else if ("oben".equals(Statisch.weg[i])){
-                        y--;
-                        g.drawLine(x*w+w/2, y*h, x*w+w/2, y*h+h);
-            } else if ("unten".equals(Statisch.weg[i])){
-                        y++;
-                        g.drawLine(x*w+w/2, y*h, x*w+w/2, y*h+h);
-            } else {
-            } 
-        }
-        * */
-        
-        for (int i = 0; i < 130; i++) {
-            System.out.println(""+Statisch.weg[i]);
-        }
         
     }//GEN-LAST:event_jButton3MouseClicked
 
@@ -391,6 +386,10 @@ public class oberflaeche extends javax.swing.JFrame {
         Statisch.b=1;
     }//GEN-LAST:event_jButton6MouseClicked
 
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton5ActionPerformed
+
     
     
     public void zeichneBild(Graphics g){  
@@ -406,7 +405,22 @@ public class oberflaeche extends javax.swing.JFrame {
                     if (Statisch.flaeche[u][i]==0) {
                       g.setColor(Color.BLACK);  
                       g.fillRect(i*w, u*h, w, h); 
-                    }else {
+                      
+                    }/** else if (Statisch.flaeche[u][i]==3){       // tut ziel markieren
+                        g.setColor(Color.BLACK);  
+                        
+                        for (int j = 0; j < 4; j++) {
+                            for (int k = 0; k < 4; k++) {
+                                if (k%2==0 && j%2==0){
+                                g.fillRect(i*w+w/4*k, u*h+h/4*j, w/4, h/4); 
+                                }else if(k%2==1 && j%2==1){
+                                    g.fillRect(i*w+w/4*k, u*h+h/4*j, w/4, h/4);
+                                }
+                            }    
+                        }
+                        
+                    } */ else {
+                        
                     }
             }
         }   

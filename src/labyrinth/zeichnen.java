@@ -15,6 +15,8 @@ import java.awt.Graphics2D;
  */
 public class zeichnen extends javax.swing.JFrame {
 
+    
+    
     /**
      * Das Zeicchenbrett:
      *      Das jPanel bekommt die position des Maus und wenn diese im rhamen liegt wird der anvisierte block entweder gesetzt oder gelöscht (die Mauer)
@@ -173,7 +175,6 @@ public class zeichnen extends javax.swing.JFrame {
             Statisch.zeichnen[y/h][x/w]=1;
         }else {
         }
-        
     }//GEN-LAST:event_jPanel1MouseClicked
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -195,17 +196,31 @@ public class zeichnen extends javax.swing.JFrame {
         setVisible(false);
         new oberflaeche().setVisible(true);
         
-        for (int zw = 0; zw < 10; zw++) {
-            
-
-        for (int i = 0; i < 13; i++) {
-            System.out.print(Statisch.flaeche[zw][i]+ "");
-        }
-            System.out.println("");
-        }
-        
     }//GEN-LAST:event_jButton2MouseClicked
 
+    /** public void randzeichnen(){     //zeichnet rand in zeichnen panel
+        Graphics2D g = (Graphics2D)jPanel1.getGraphics();
+        int h = jPanel1.getHeight();
+        int w = jPanel1.getWidth();
+        h=h/10;
+        w=w/13;
+        
+        for (int u = 0; u < 10; u++) {
+        
+            for (int i = 0; i < 13; i++) {
+                    if (Statisch.zeichnen[u][i]==0) {    //!=0 ist wichtig und nicht ==1 weil sonst das ziel (3) nicht gelöscht wird
+                      g.setColor(Color.BLACK);
+                      g.fillRect(i*w, u*h, w, h);
+                    }else if(Statisch.flaeche[u][i]==3){
+                      g.setColor(Color.ORANGE);
+                      g.fillRect(i*w, u*h, w, h);
+                    }
+            }
+        } 
+    } */
+    
+    
+    
     
     /**
      * @param args the command line arguments
