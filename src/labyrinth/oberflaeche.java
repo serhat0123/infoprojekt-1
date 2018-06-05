@@ -194,8 +194,8 @@ public class oberflaeche extends javax.swing.JFrame {
         }
         int kk=0;
         int a=1;
-        int b=2;
-        int z=1;
+        int b=1;
+        int z=0;
             
         while (kk==0){
             g.setColor(Color.red);
@@ -221,6 +221,12 @@ public class oberflaeche extends javax.swing.JFrame {
         Statisch.z=0;   //wichtige zurücksetzung der parameter für den schrittweisen weg
         Statisch.a=1;
         Statisch.b=1;
+
+
+        
+        for (int i = 0; i < 130; i++) {
+            System.out.println(""+Statisch.weg[i]);
+        }
         
     }//GEN-LAST:event_jButton3MouseClicked
 
