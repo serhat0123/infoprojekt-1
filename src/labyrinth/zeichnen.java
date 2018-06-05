@@ -40,6 +40,7 @@ public class zeichnen extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jCheckBox1 = new javax.swing.JCheckBox();
+        jCheckBox2 = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -47,6 +48,9 @@ public class zeichnen extends javax.swing.JFrame {
         jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jPanel1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jPanel1MouseEntered(evt);
             }
         });
 
@@ -58,7 +62,7 @@ public class zeichnen extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 265, Short.MAX_VALUE)
+            .addGap(0, 261, Short.MAX_VALUE)
         );
 
         jButton2.setText("Abbrechen");
@@ -87,27 +91,41 @@ public class zeichnen extends javax.swing.JFrame {
 
         jCheckBox1.setText("Löschen");
 
+        jCheckBox2.setText("Startpunkt festlegen");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jCheckBox1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jCheckBox1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 199, Short.MAX_VALUE)
+                        .addComponent(jButton2))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 183, Short.MAX_VALUE)
-                .addComponent(jButton2))
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jCheckBox2)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jCheckBox2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
                     .addComponent(jButton3)
-                    .addComponent(jCheckBox1)))
+                    .addComponent(jCheckBox1)
+                    .addComponent(jButton2))
+                .addContainerGap())
         );
 
         pack();
@@ -120,7 +138,7 @@ public class zeichnen extends javax.swing.JFrame {
         //Statisch.flaeche=Statisch.zeichnen; Das ist nicht das selbe wie die gleichsetzung durch die forschleifen; das ist eine Zuweisung
         
         
-        for (int u = 1; u < 9; u++) {   // zeichenbrett wird zurückgesetzt
+        for (int u = 1; u < 9; u++) {   // übergabe an flaeche
             
         
             for (int i = 1; i < 12; i++) {
@@ -128,11 +146,25 @@ public class zeichnen extends javax.swing.JFrame {
             }
         }
         
+        for (int u = 0; u < 10; u++) {   // übergabe an flaeche
+            
+        
+            for (int i = 0; i < 13; i++) {
+                    StatischStartPkt.eigflaeche[u][i]=0;
+            }
+        }
+        StatischStartPkt.eigflaeche[StatischStartPkt.y][StatischStartPkt.x]=1;
+        
+        StatischStartPkt.xzuletzt=StatischStartPkt.x;
+        StatischStartPkt.yzuletzt=StatischStartPkt.y;
+        
         berechnungStatisch.berechnen();
         
         Statisch.z=0;
-        Statisch.a=1;
-        Statisch.b=1;
+        Statisch.a=StatischStartPkt.x;
+        Statisch.b=StatischStartPkt.y;
+        
+        
         setVisible(false);
         new oberflaeche().setVisible(true);
     }//GEN-LAST:event_jButton3MouseClicked
@@ -165,10 +197,15 @@ public class zeichnen extends javax.swing.JFrame {
         } else {
             r=0;
         }
-        
-        if (jCheckBox1.isSelected()==false && r==1){
-        g.setColor(Color.DARK_GRAY);
-        g.fillRect(x, y, w, h);
+        if(jCheckBox2.isSelected()==true && r==1){
+            g.setColor(Color.GREEN);
+            g.clearRect(StatischStartPkt.x*w, StatischStartPkt.y*h, w, h);
+            g.fillRect(x, y, w, h);
+            StatischStartPkt.x=x/w;
+            StatischStartPkt.y=y/h;
+        }else if (jCheckBox1.isSelected()==false && r==1){
+            g.setColor(Color.DARK_GRAY);
+            g.fillRect(x, y, w, h);
             Statisch.zeichnen[y/h][x/w]=0;
         } else if(jCheckBox1.isSelected()==true && r==1){
             g.clearRect(x, y, w, h);
@@ -188,7 +225,8 @@ public class zeichnen extends javax.swing.JFrame {
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
         // Abbrechen
         //einfach nichts wird zugewießen :D (also bleibt die Flaeche gleich sodass auch keine neuen berechnungen anfallen)
-      
+        StatischStartPkt.x=StatischStartPkt.xzuletzt;
+        StatischStartPkt.y=StatischStartPkt.yzuletzt;
         Statisch.z=0;
         Statisch.a=1;
         Statisch.b=1;
@@ -198,7 +236,12 @@ public class zeichnen extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton2MouseClicked
 
-    /** public void randzeichnen(){     //zeichnet rand in zeichnen panel
+    private void jPanel1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseEntered
+        // Wenn die maus im feld ist soll der rand erscheinen da wir uns nicht anders behelfen konnten
+        randzeichnen();
+    }//GEN-LAST:event_jPanel1MouseEntered
+
+    public void randzeichnen(){     //zeichnet rand in zeichnen panel
         Graphics2D g = (Graphics2D)jPanel1.getGraphics();
         int h = jPanel1.getHeight();
         int w = jPanel1.getWidth();
@@ -216,8 +259,10 @@ public class zeichnen extends javax.swing.JFrame {
                       g.fillRect(i*w, u*h, w, h);
                     }
             }
-        } 
-    } */
+        }
+        g.setColor(Color.GREEN);
+        g.fillRect(StatischStartPkt.x*w, StatischStartPkt.y*h, w, h);
+    }
     
     
     
@@ -261,6 +306,7 @@ public class zeichnen extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

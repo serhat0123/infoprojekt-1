@@ -38,18 +38,15 @@ public class berechnungStatisch {
             
             
 
-        int [][] eigflaeche =              //Das labyrinth das es sich selbst erarbeiten wird
-        { {0,0,0,0,0,0,0,0,0,0,0,0,0},
-          {0,1,0,0,0,0,0,0,0,0,0,0,0},
-          {0,0,0,0,0,0,0,0,0,0,0,0,0},
-          {0,0,0,0,0,0,0,0,0,0,0,0,0},
-          {0,0,0,0,0,0,0,0,0,0,0,0,0},
-          {0,0,0,0,0,0,0,0,0,0,0,0,0},
-          {0,0,0,0,0,0,0,0,0,0,0,0,0},
-          {0,0,0,0,0,0,0,0,0,0,0,0,0},
-          {0,0,0,0,0,0,0,0,0,0,0,0,0},
-          {0,0,0,0,0,0,0,0,0,0,0,0,0}
-        };
+        int [][] eigflaeche = new int [10][13];
+        
+        for (int u = 0; u < 10; u++) {   // übergabe an eigflaeche
+            
+        
+            for (int i = 0; i < 13; i++) {
+                    eigflaeche[u][i]=StatischStartPkt.eigflaeche[u][i];
+            }
+        }
         
         String [] weg = new String [130];     //max. 130 einträge/ gibt den perfekten weg wieder
         String [] weg2 = new String [130];    //gibt weg auch mit fail abbiegungen wieder
@@ -63,8 +60,8 @@ public class berechnungStatisch {
         
         //JETZT FOLGT: EIN ALGORHYTMUS mit dem der Gang des Springers ermittelt werden kann:
         
-        int a=1;    //1=nach unten 2=nach oben 3=nach links 4=nach rechts
-        int b=1;
+        int a=StatischStartPkt.y;    //1=nach unten 2=nach oben 3=nach links 4=nach rechts
+        int b=StatischStartPkt.x;
         int k=-1;
         int p=-1;
         int c=flaeche[a][b];
@@ -155,23 +152,6 @@ public class berechnungStatisch {
         Statisch.eigflaeche = eigflaeche;   //  ermittelte eigenflaeche wird an die zwischen Klasse Statisch übergegeben 
         Statisch.weg = weg;
         Statisch.weg2 = weg2;               //      und der weg (weg 2) mit den fails auch
-
-        
-        for (int zw = 0; zw < 10; zw++) {
-            
-
-        for (int i = 0; i < 13; i++) {
-            System.out.print(Statisch.eigflaeche[zw][i]+ "");
-        }
-            System.out.println("");
-        }
-        System.out.println(c + ""+ a +b);
-        for (int i = 0; i < weg.length; i++) {
-            if (weg2[i]!=Statisch.weg2[i]){
-                System.out.println(weg2[i] + i); 
-            }
-           
-        }
         
     }
     

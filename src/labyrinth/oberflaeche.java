@@ -61,6 +61,7 @@ public class oberflaeche extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
+        jCheckBox1 = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -125,6 +126,13 @@ public class oberflaeche extends javax.swing.JFrame {
             }
         });
 
+        jCheckBox1.setText("Roter Hifsweg");
+        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -136,8 +144,10 @@ public class oberflaeche extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton5)
+                .addComponent(jCheckBox1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton5)
+                .addGap(18, 18, 18)
                 .addComponent(jButton6)
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
@@ -155,7 +165,8 @@ public class oberflaeche extends javax.swing.JFrame {
                     .addComponent(jButton4)
                     .addComponent(jButton2)
                     .addComponent(jButton5)
-                    .addComponent(jButton6)))
+                    .addComponent(jButton6)
+                    .addComponent(jCheckBox1)))
         );
 
         pack();
@@ -193,41 +204,37 @@ public class oberflaeche extends javax.swing.JFrame {
             }
         }
         int kk=0;
-        int a=1;
-        int b=1;
+        int a=StatischStartPkt.x;
+        int b=StatischStartPkt.y;
         int z=0;
-            
-        while (kk==0){
-            g.setColor(Color.red);
-            if ("rechts".equals(Statisch.weg[z])){
-                        g.drawLine(a*w+w/2, b*h+h/2, a*w+w/2+w, b*h+h/2);
-                        a++;
-            } else if ("links".equals(Statisch.weg[z])){
-                        g.drawLine(a*w+w/2, b*h+h/2, a*w+w/2-w, b*h+h/2);
-                        a--;
-            } else if ("oben".equals(Statisch.weg[z])){
-                        g.drawLine(a*w+w/2, b*h+h/2, a*w+w/2, b*h+h/2-h);
-                        b--;
-            } else if ("unten".equals(Statisch.weg[z])){
-                        g.drawLine(a*w+w/2, b*h+h/2, a*w+w/2, b*h+h/2+h);
-                        b++;
-                        
-            } else {                                        //else tritt ein wenn "0" im Array steht-->fertig "gegangen"
-                kk=1;
+        if(jCheckBox1.isSelected()==true){   
+            while (kk==0){
+                g.setColor(Color.red);
+                    if ("rechts".equals(Statisch.weg[z])){
+                                g.drawLine(a*w+w/2, b*h+h/2, a*w+w/2+w, b*h+h/2);
+                                a++;
+                    } else if ("links".equals(Statisch.weg[z])){
+                                g.drawLine(a*w+w/2, b*h+h/2, a*w+w/2-w, b*h+h/2);
+                                a--;
+                    } else if ("oben".equals(Statisch.weg[z])){
+                                g.drawLine(a*w+w/2, b*h+h/2, a*w+w/2, b*h+h/2-h);
+                                b--;
+                    } else if ("unten".equals(Statisch.weg[z])){
+                                g.drawLine(a*w+w/2, b*h+h/2, a*w+w/2, b*h+h/2+h);
+                                b++;
+
+                    } else {                                        //else tritt ein wenn "0" im Array steht-->fertig "gegangen"
+                        kk=1;
+                    }
+                    z++;
             }
-            z++;
-        }
+        }else{
+        }    
         
         Statisch.z=0;   //wichtige zurücksetzung der parameter für den schrittweisen weg
-        Statisch.a=1;
-        Statisch.b=1;
-
-
-        
-        for (int i = 0; i < 130; i++) {
-            System.out.println(""+Statisch.weg[i]);
-        }
-        
+        Statisch.a=StatischStartPkt.x;
+        Statisch.b=StatischStartPkt.y;
+    
     }//GEN-LAST:event_jButton3MouseClicked
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
@@ -249,8 +256,8 @@ public class oberflaeche extends javax.swing.JFrame {
             }
         } 
         Statisch.z=0;   //wichtige zurücksetzung der parameter für den schrittweisen weg
-        Statisch.a=1;
-        Statisch.b=1;
+        Statisch.a=StatischStartPkt.x;
+        Statisch.b=StatischStartPkt.y;
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
@@ -369,8 +376,6 @@ public class oberflaeche extends javax.swing.JFrame {
     private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
         // selbst zeichnen wird geöffnet:
         setVisible(false);
-        new zeichnen().setVisible(true);
-        
         
         for (int u = 1; u < 9; u++) {   // zeichenbrett wird zurückgesetzt
             
@@ -379,22 +384,43 @@ public class oberflaeche extends javax.swing.JFrame {
                     Statisch.zeichnen[u][i]=1;
             }
         }
+        StatischStartPkt.x=1;
+        StatischStartPkt.y=1;
+        
+        new zeichnen().setVisible(true);
     }//GEN-LAST:event_jButton5MouseClicked
 
     private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
         // Standart Labyrinth benutzen:
         setVisible(false);
-        Statisch.flaeche=Statisch.flaeche_fest;
+        for (int u = 0; u < 10; u++) {   // übergabe an flaeche
+            
+        
+            for (int i = 0; i < 13; i++) {
+                    Statisch.flaeche[u][i]=Statisch.flaeche_fest[u][i];
+            }
+        }
+        Statisch.z=0;   //wichtige zurücksetzung der parameter für den schrittweisen weg
+        Statisch.a=StatischStartPkt.xfest;
+        Statisch.b=StatischStartPkt.yfest;
+        StatischStartPkt.x=StatischStartPkt.xfest;
+        StatischStartPkt.y=StatischStartPkt.yfest;
+        for (int u = 0; u < 10; u++) {   // eigflaeche wird zurückgesetzt
+            for (int i = 0; i < 13; i++) {
+                    StatischStartPkt.eigflaeche[u][i]=StatischStartPkt.eigflaechefest[u][i];
+            }
+        }
         berechnungStatisch.berechnen();
         setVisible(true);
-        Statisch.z=0;   //wichtige zurücksetzung der parameter für den schrittweisen weg
-        Statisch.a=1;
-        Statisch.b=1;
     }//GEN-LAST:event_jButton6MouseClicked
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     
     
@@ -479,6 +505,7 @@ public class oberflaeche extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
